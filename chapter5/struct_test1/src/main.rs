@@ -19,4 +19,13 @@ fn main() {
 
     user.email =  String::from("anotheremail@example.com");
     println!("change email {}", user.email);
+
+    let user1 = User {
+        email: String::from("someya@example.com"),
+        username: String::from("test1"),
+        ..user
+    };
+
+    println!("Hello {}", user1.username);
+    println!("email {}", user1.email);
 }
