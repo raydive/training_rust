@@ -1,6 +1,8 @@
 pub trait Summary {
+    fn summarize_author(&self) -> String;
+
     fn summarize(&self) -> String {
-        String::from("(Read more...)")
+        format!("#{}", self.summarize_author())
     }
 }
 
@@ -42,11 +44,11 @@ warning: `tweet` (bin "tweet") generated 1 warning
      Running `target/debug/tweet`
 New article available! (Read more...)
 */
-impl Summary for NewsArticle {
-    // fn summarize(&self) -> String {
-    //     format!("{}, by {} ({})", self.headline, self.author, self.location)
-    // }
-}
+// impl Summary for NewsArticle {
+//     // fn summarize(&self) -> String {
+//     //     format!("{}, by {} ({})", self.headline, self.author, self.location)
+//     // }
+// }
 
 pub struct Tweet {
     pub username: String,
@@ -56,7 +58,15 @@ pub struct Tweet {
 }
 
 impl Summary for Tweet {
+    fn summarize_author(&self) -> String {
+        format!("@{}", self.username)
+    }
+
     fn summarize(&self) -> String {
         format!("{}: {}", self.username, self.content)
     }
+}
+
+pub fn notify(item: &impl Summary) {
+    println!("Breaking news! {}", item.summarize());
 }
