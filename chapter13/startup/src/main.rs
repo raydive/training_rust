@@ -18,17 +18,19 @@ fn main() {
     );
 }
 fn generate_workout(intensity: u32, random_number: u32) {
+    let expensive_result = simulated_expensive_calculation(intensity);
+
     if intensity < 25 {
         println!(
             // 今日は{}回腕立て伏せをしてください！
             "Today, do {} pushups!",
-            simulated_expensive_calculation(intensity)
+            expensive_result
         );
 
         println!(
             // 次に、{}回腹筋をしてください！
             "Next, do {} situps!",
-            simulated_expensive_calculation(intensity)
+            expensive_result
         );
     } else {
         if random_number == 3 {
@@ -38,7 +40,7 @@ fn generate_workout(intensity: u32, random_number: u32) {
             println!(
                 // 今日は、{}分間走ってください！
                 "Today, run for {} minutes!",
-                simulated_expensive_calculation(intensity)
+                expensive_result
             );
         }
     }
