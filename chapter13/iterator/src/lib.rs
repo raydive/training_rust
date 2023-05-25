@@ -31,4 +31,20 @@ mod tests {
 
         assert_eq!(v2, vec![2, 3, 4]);
     }
+
+    #[test]
+    fn enum_test() {
+        enum Event {
+            Init { a :i32 },
+            Next { b :i32, c :i32 },
+            End,
+        }
+        
+        let init = Event::Init {a:1};
+        match init {
+            Event::Init {a} => println!("init {}", a),
+            Event::Next {b, c} => println!("next {} {}", b, c),
+            Event::End => println!("end"),
+        }
+    }
 }
