@@ -1,15 +1,4 @@
-/*
-$ cargo run                                                                                                                 [git][main] ? 
-   Compiling drop-test v0.1.0 (/Users/arata_n/dev/training_rust/chapter15/drop-test)
-error[E0040]: explicit use of destructor method
-  --> src/main.rs:19:7
-   |
-19 |     c.drop();
-   |     --^^^^--
-   |     | |
-   |     | explicit destructor calls not allowed
-   |     help: consider using `drop` function: `drop(c)`
-*/
+// Good
 struct CustomSmartPointer {
     data: String,
 }
@@ -25,6 +14,6 @@ fn main() {
     let c = CustomSmartPointer { data: String::from("my stuff")};
     println!("CustomSmartPointers created.");
 
-    c.drop();
+    drop(c);
     println!("CustomSmartPointer dropped befre the end of main.");
 }
