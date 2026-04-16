@@ -6,7 +6,7 @@ use std::net::TcpListener;
 use std::net::TcpStream;
 
 /*
-$ cargo run                                                                                                     [git][main] -? 
+$ cargo run                                                                                                     [git][main] -?
    Compiling hello v0.1.0 (/Users/arata_n/Documents/dev/training_rust/chapter20/hello)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.13s
      Running `target/debug/main`
