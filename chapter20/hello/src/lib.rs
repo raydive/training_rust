@@ -1,6 +1,6 @@
-use std::thread;
-use std::sync::mpsc;
 use std::sync::Arc;
+use std::sync::mpsc;
+use std::thread;
 
 pub struct ThreadPool {
     workers: Vec<Worker>,
@@ -28,7 +28,7 @@ impl ThreadPool {
     /// sizeは、プール内のスレッドの数です。
     ///
     /// sizeが0の場合は、エラーになります。
-    /// 
+    ///
     /// # Panics
     /// sizeが0の場合にパニックになります。
     pub fn new(size: usize) -> ThreadPool {
@@ -45,7 +45,7 @@ impl ThreadPool {
         ThreadPool { workers, sender }
     }
 
-    // F型引数にはまた、トレイト境界のSendとライフタイム境界の'staticもあり、この状況では有用です: 
+    // F型引数にはまた、トレイト境界のSendとライフタイム境界の'staticもあり、この状況では有用です:
     // あるスレッドから別のスレッドにクロージャを移動するのにSendが必要で、
     // スレッドの実行にどれくらいかかるかわからないので、 'staticも必要です。
     pub fn execute<F>(&self, f: F)
@@ -74,7 +74,6 @@ impl Drop for ThreadPool {
     }
 }
 
-
 struct Worker {
     id: usize,
     // Optionじゃないと、何らかの値を持たないといけないのでthreadをmoveできない
@@ -100,6 +99,9 @@ impl Worker {
             }
         });
 
-        Worker { id, thread: Some(thread) }
+        Worker {
+            id,
+            thread: Some(thread),
+        }
     }
 }
