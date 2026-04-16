@@ -26,15 +26,15 @@ impl Config {
         let case_sensitive = env::var("CASE_INSENSITIVE").is_err();
 
         Ok(Config {
-            query: query,
-            filename: filename,
-            case_sensitive: case_sensitive,
+            query,
+            filename,
+            case_sensitive,
         })
     }
 }
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
-    let mut f = File::open(config.filename).expect("file not found");
+    let mut f = File::open(config.filename)?;
 
     let mut contents = String::new();
     f.read_to_string(&mut contents)?;
